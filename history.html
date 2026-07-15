@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +14,6 @@
 
 <h1>📜 Project Zero History</h1>
 
-<h2>Founder Summary</h2>
-
 <div id="history"></div>
 
 <br>
@@ -29,29 +26,39 @@
 
 <script>
 
-const saved=localStorage.getItem("projectZeroToday");
+let history = JSON.parse(localStorage.getItem("projectZeroHistory")) || [];
 
-if(saved){
+let output = "";
 
-const data=JSON.parse(saved);
+if(history.length === 0){
 
-document.getElementById("history").innerHTML=`
-<h3>📅 ${data.date}</h3>
-
-<p><b>Attendance:</b> ${data.attendance}</p>
-
-<p><b>Research:</b> ${data.research} Minutes</p>
-
-<p><b>Today's Win:</b> ${data.win}</p>
-`;
+output = "<h3>No History Found</h3>";
 
 }else{
 
-document.getElementById("history").innerHTML="<h3>No history found.</h3>";
+history.reverse().forEach(day=>{
+
+output += `
+<hr>
+
+<h3>📅 ${day.date}</h3>
+
+<p><b>Attendance:</b> ${day.attendance}</p>
+
+<p><b>Research:</b> ${day.research} Minutes</p>
+
+<p><b>Today's Win:</b> ${day.win}</p>
+
+`;
+
+});
 
 }
+
+document.getElementById("history").innerHTML = output;
 
 </script>
 
 </body>
 </html>
+
