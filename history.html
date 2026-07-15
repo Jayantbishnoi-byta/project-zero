@@ -9,7 +9,13 @@
 
 </head>
 <body>
+<h2>📈 Weekly Progress</h2>
 
+<progress id="progressBar" value="0" max="100" style="width:100%;height:25px;"></progress>
+
+<p id="progressText">0%</p>
+
+<hr>
 <div class="card">
 <h2>Founder Summary</h2>
 <p>🔥 Current Streak: <span id="streakCount">0</span> Days</p>
@@ -67,7 +73,15 @@ for (let i = history.length - 1; i >= 0; i--) {
 
 document.getElementById("streakCount").innerHTML = streak;
 if(history.length === 0){
+let total = present + absent;
+let percent = 0;
 
+if (total > 0) {
+  percent = Math.round((present / total) * 100);
+}
+
+document.getElementById("progressBar").value = percent;
+document.getElementById("progressText").innerHTML = percent + "%";
 output = "<h3>No History Found</h3>";
 
 }else{
