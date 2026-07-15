@@ -12,7 +12,7 @@
 
 <div class="card">
 <h2>Founder Summary</h2>
-
+<p>🔥 Current Streak: <span id="streakCount">0</span> Days</p>
 <p>✅ Total Present: <span id="presentCount">0</span></p>
 
 <p>❌ Total Absent: <span id="absentCount">0</span></p>
@@ -55,7 +55,17 @@ document.getElementById("presentCount").innerHTML = present;
 document.getElementById("absentCount").innerHTML = absent;
 document.getElementById("researchTotal").innerHTML = research;
 let output = "";
+let streak = 0;
 
+for (let i = history.length - 1; i >= 0; i--) {
+  if (history[i].attendance.includes("Present")) {
+    streak++;
+  } else {
+    break;
+  }
+}
+
+document.getElementById("streakCount").innerHTML = streak;
 if(history.length === 0){
 
 output = "<h3>No History Found</h3>";
