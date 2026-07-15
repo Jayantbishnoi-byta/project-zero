@@ -1,4 +1,3 @@
-
 function saveData(){
 
 const data={
@@ -8,7 +7,12 @@ research:document.getElementById("research").value,
 win:document.getElementById("win").value
 };
 
-localStorage.setItem("projectZeroToday",JSON.stringify(data));
+let history=JSON.parse(localStorage.getItem("projectZeroHistory")) || [];
+
+history.push(data);
+
+localStorage.setItem("projectZeroHistory",JSON.stringify(history));
 
 document.getElementById("status").innerHTML="✅ Saved Successfully Co-Founder!";
+
 }
