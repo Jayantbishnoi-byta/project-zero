@@ -1,93 +1,57 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Zero History</title>
 
-<title>Project Zero - History</title>
-
-<style>
-
-body{
-background:#0f172a;
-font-family:Arial,sans-serif;
-color:white;
-padding:20px;
-}
-
-.container{
-max-width:700px;
-margin:auto;
-background:#1e293b;
-padding:20px;
-border-radius:15px;
-}
-
-h1,h2{
-text-align:center;
-}
-
-.summary{
-background:#111827;
-padding:15px;
-border-radius:10px;
-margin-bottom:20px;
-}
-
-.record{
-background:#273549;
-padding:15px;
-border-radius:10px;
-margin-top:15px;
-}
-
-a{
-color:#38bdf8;
-text-decoration:none;
-font-weight:bold;
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
-
 <body>
 
-<div class="container">
+<div class="card">
 
-<h1>📚 Project Zero History</h1>
-
-<div class="summary">
+<h1>📜 Project Zero History</h1>
 
 <h2>Founder Summary</h2>
 
-<p>🔥 Current Streak : 0 Days</p>
-
-<p>✅ Total Present : 0</p>
-
-<p>❌ Total Absent : 0</p>
-
-<p>⏱️ Total Research Hours : 0</p>
-
-</div>
-
-<div class="record">
-
-<h3>12 July 2026</h3>
-
-<p>Attendance : ✅ Present</p>
-
-<p>Research : 60 Minutes</p>
-
-<p>Today's Win : Created my first live website.</p>
-
-</div>
+<div id="history"></div>
 
 <br>
 
-<a href="index.html">⬅ Back to Dashboard</a>
+<a href="index.html">
+<button>⬅ Back to Dashboard</button>
+</a>
 
 </div>
 
+<script>
+
+const saved=localStorage.getItem("projectZeroToday");
+
+if(saved){
+
+const data=JSON.parse(saved);
+
+document.getElementById("history").innerHTML=`
+<h3>📅 ${data.date}</h3>
+
+<p><b>Attendance:</b> ${data.attendance}</p>
+
+<p><b>Research:</b> ${data.research} Minutes</p>
+
+<p><b>Today's Win:</b> ${data.win}</p>
+`;
+
+}else{
+
+document.getElementById("history").innerHTML="<h3>No history found.</h3>";
+
+}
+
+</script>
+
 </body>
-                              </html>
+</html>
