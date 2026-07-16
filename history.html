@@ -8,7 +8,11 @@
 <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
+
+<div class="card">
+
 <h2>📈 Weekly Progress</h2>
 
 <progress id="progressBar" value="0" max="100" style="width:100%;height:25px;"></progress>
@@ -16,9 +20,11 @@
 <p id="progressText">0%</p>
 
 <hr>
-<div class="card">
+
 <h2>Founder Summary</h2>
+
 <p>🔥 Current Streak: <span id="streakCount">0</span> Days</p>
+
 <p>✅ Total Present: <span id="presentCount">0</span></p>
 
 <p>❌ Total Absent: <span id="absentCount">0</span></p>
@@ -26,6 +32,7 @@
 <p>⏱️ Total Research: <span id="researchTotal">0</span> Minutes</p>
 
 <hr>
+
 <h1>📜 Project Zero History</h1>
 
 <div id="history"></div>
@@ -39,34 +46,34 @@
 </div>
 
 <script>
-
 let history = JSON.parse(localStorage.getItem("projectZeroHistory")) || [];
+
 let present = 0;
 let absent = 0;
 let research = 0;
 
 history.forEach(day => {
-
-  if(day.attendance.includes("Present")){
+  if (day.attendance.includes("Present")) {
     present++;
-  }else{
+  } else {
     absent++;
   }
 
   research += Number(day.research || 0);
-
 });
 
-document.getElementById("presentCount").innerHTML = present;
-document.getElementById("absentCount").innerHTML = absent;
-document.getElementById("researchTotal").innerHTML = research;
-let total = present + absent;
-let percent = 0;
+document.getElementById("presentCount").textContent = present;
+document.getElementById("absentCount").textContent = absent;
+document.getElementById("researchTotal").textContent = research;
 
-if (total > 0) {
-    percent = Math.round((present / total) * 100);
-  }  
-let output = "";
+// Progress
+let total = present + absent;
+let percent = total > 0 ? Math.round((present / total) * 100) : 0;
+
+document.getElementById("progressBar").value = percent;
+document.getElementById("progressText").textContent = percent + "%";
+
+// Current Streak
 let streak = 0;
 
 for (let i = history.length - 1; i >= 0; i--) {
@@ -77,37 +84,30 @@ for (let i = history.length - 1; i >= 0; i--) {
   }
 }
 
-document.getElementById("streakCount").innerHTML = streak;
-if(history.length === 0){
-let total = present + absent;
-let percent = 0;
+document.getElementById("streakCount").textContent = streak;
 
-if (total > 0) {
-  percent = Math.round((present / total) * 100);
-}
+// History
+let output = "";
 
-document.getElementById("progressBar").value = percent;
-document.getElementById("progressText").innerHTML = percent + "%";
-output = "<h3>No History Found</h3>";
+if (history.length === 0) {
+  output = "<h3>No History Found</h3>";
+} else {
 
-}else{
+  [...history].reverse().forEach(day => {
 
-history.reverse().forEach(day=>{
+    output += `
+      <hr>
 
-output += `
-<hr>
+      <h3>📅 ${day.date}</h3>
 
-<h3>📅 ${day.date}</h3>
+      <p><b>Attendance:</b> ${day.attendance}</p>
 
-<p><b>Attendance:</b> ${day.attendance}</p>
+      <p><b>Research:</b> ${day.research} Minutes</p>
 
-<p><b>Research:</b> ${day.research} Minutes</p>
+      <p><b>Today's Win:</b> ${day.win}</p>
+    `;
 
-<p><b>Today's Win:</b> ${day.win}</p>
-
-`;
-
-});
+  });
 
 }
 
@@ -117,4 +117,3 @@ document.getElementById("history").innerHTML = output;
 
 </body>
 </html>
-
