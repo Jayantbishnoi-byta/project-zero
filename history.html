@@ -60,6 +60,12 @@ history.forEach(day => {
 document.getElementById("presentCount").innerHTML = present;
 document.getElementById("absentCount").innerHTML = absent;
 document.getElementById("researchTotal").innerHTML = research;
+let total = present + absent;
+let percent = 0;
+
+if (total > 0) {
+    percent = Math.round((present / total) * 100);
+  }  
 let output = "";
 let streak = 0;
 
