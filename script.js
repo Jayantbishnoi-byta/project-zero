@@ -6,7 +6,8 @@ attendance:document.getElementById("attendance").value,
 research:document.getElementById("research").value,
 win:document.getElementById("win").value
 };
-
+goal: document.getElementById("goal").value,
+goalProgress: document.getElementById("goalProgress").value
 let history=JSON.parse(localStorage.getItem("projectZeroHistory")) || [];
 
 history.push(data);
