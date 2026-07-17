@@ -32,7 +32,11 @@
 <p>⏱️ Total Research: <span id="researchTotal">0</span> Minutes</p>
 
 <hr>
+<h2>🏆 Achievements</h2>
 
+<div id="badges"></div>
+
+<hr>
 <h1>📜 Project Zero History</h1>
 
 <div id="history"></div>
@@ -112,7 +116,21 @@ if (history.length === 0) {
 }
 
 document.getElementById("history").innerHTML = output;
+let badges = "";
 
+if (history.length >= 1) {
+    badges += "🥉 First Save<br>";
+}
+
+if (research >= 100) {
+    badges += "📚 100 Research Minutes<br>";
+}
+
+if (streak >= 7) {
+    badges += "🔥 7 Day Streak<br>";
+}
+
+document.getElementById("badges").innerHTML = badges;
 </script>
 
 </body>
