@@ -98,42 +98,18 @@ if (history.length === 0) {
 } else {
 
   [...history].reverse().forEach(day => {
+output += `
+<hr>
 
-    output += `
-      <hr>
+<h3>📅 ${day.date}</h3>
 
-      <h3>📅 ${day.date}</h3>
+<p><b>Attendance:</b> ${day.attendance}</p>
 
-      <p><b>Attendance:</b> ${day.attendance}</p>
+<p><b>Research:</b> ${day.research} Minutes</p>
 
-      <p><b>Research:</b> ${day.research} Minutes</p>
+<p><b>Today's Win:</b> ${day.win}</p>
 
-      <p><b>Today's Win:</b> ${day.win}</p>
-    `;
 <p><b>🎯 Goal:</b> ${day.goal}</p>
 
 <p><b>📊 Goal Progress:</b> ${day.goalProgress}%</p>
-  });
-
-}
-
-document.getElementById("history").innerHTML = output;
-let badges = "";
-
-if (history.length >= 1) {
-    badges += "🥉 First Save<br>";
-}
-
-if (research >= 100) {
-    badges += "📚 100 Research Minutes<br>";
-}
-
-if (streak >= 7) {
-    badges += "🔥 7 Day Streak<br>";
-}
-
-document.getElementById("badges").innerHTML = badges;
-</script>
-
-</body>
-</html>
+`;
