@@ -78,7 +78,28 @@ font-weight:bold;
 <label>Today's Win</label>
 
 <textarea id="win"></textarea>
+<hr>
 
+<h2>🎯 Today's Goal</h2>
+
+<label>Goal</label>
+
+<input
+type="text"
+id="goal"
+placeholder="Example: Learn JavaScript for 30 minutes">
+
+<label>Goal Completed (%)</label>
+
+<input
+type="range"
+id="goalProgress"
+min="0"
+max="100"
+value="0"
+oninput="document.getElementById('goalValue').innerHTML=this.value+'%'">
+
+<p id="goalValue">0%</p>
 <button onclick="saveData()">
 
 Save Today
