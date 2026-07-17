@@ -38,7 +38,11 @@
 <hr>
 
 <h2>🏆 Achievements</h2>
+<h3>⭐ Founder Level</h3>
 
+<p id="founderLevel">🟢 Beginner</p>
+
+<hr>
 <div id="badges"></div>
 
 <hr>
@@ -153,6 +157,23 @@ if(streak >= 7){
 }
 
 document.getElementById("badges").innerHTML = badges;
+// Founder Level
+
+let level = "🟢 Beginner";
+
+if (research >= 100) {
+    level = "🔵 Builder";
+}
+
+if (research >= 300) {
+    level = "🟣 Founder";
+}
+
+if (research >= 1000) {
+    level = "🟡 Legend";
+}
+
+document.getElementById("founderLevel").innerHTML = level;    
   </script>
 
 </body>
