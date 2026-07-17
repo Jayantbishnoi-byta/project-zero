@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Project Zero History</title>
 
 <link rel="stylesheet" href="style.css">
@@ -32,11 +36,13 @@
 <p>⏱️ Total Research: <span id="researchTotal">0</span> Minutes</p>
 
 <hr>
+
 <h2>🏆 Achievements</h2>
 
 <div id="badges"></div>
 
 <hr>
+
 <h1>📜 Project Zero History</h1>
 
 <div id="history"></div>
@@ -57,59 +63,98 @@ let absent = 0;
 let research = 0;
 
 history.forEach(day => {
-  if (day.attendance.includes("Present")) {
-    present++;
-  } else {
-    absent++;
-  }
 
-  research += Number(day.research || 0);
+    if(day.attendance.includes("Present")){
+        present++;
+    }else{
+        absent++;
+    }
+
+    research += Number(day.research || 0);
+
 });
 
-document.getElementById("presentCount").textContent = present;
-document.getElementById("absentCount").textContent = absent;
-document.getElementById("researchTotal").textContent = research;
+document.getElementById("presentCount").innerHTML = present;
+document.getElementById("absentCount").innerHTML = absent;
+document.getElementById("researchTotal").innerHTML = research;
 
-// Progress
+// Progress Bar
+
 let total = present + absent;
 let percent = total > 0 ? Math.round((present / total) * 100) : 0;
 
 document.getElementById("progressBar").value = percent;
-document.getElementById("progressText").textContent = percent + "%";
+document.getElementById("progressText").innerHTML = percent + "%";
 
 // Current Streak
+
 let streak = 0;
 
-for (let i = history.length - 1; i >= 0; i--) {
-  if (history[i].attendance.includes("Present")) {
-    streak++;
-  } else {
-    break;
-  }
+for(let i = history.length - 1; i >= 0; i--){
+
+    if(history[i].attendance.includes("Present")){
+        streak++;
+    }else{
+        break;
+    }
+
 }
 
-document.getElementById("streakCount").textContent = streak;
+document.getElementById("streakCount").innerHTML = streak;
 
 // History
+
 let output = "";
 
-if (history.length === 0) {
-  output = "<h3>No History Found</h3>";
-} else {
+if(history.length === 0){
 
-  [...history].reverse().forEach(day => {
-output += `
-<hr>
+    output = "<h3>No History Found</h3>";
 
-<h3>📅 ${day.date}</h3>
+}else{
 
-<p><b>Attendance:</b> ${day.attendance}</p>
+    [...history].reverse().forEach(day=>{
 
-<p><b>Research:</b> ${day.research} Minutes</p>
+        output += `
+        <hr>
 
-<p><b>Today's Win:</b> ${day.win}</p>
+        <h3>📅 ${day.date}</h3>
 
-<p><b>🎯 Goal:</b> ${day.goal}</p>
+        <p><b>Attendance:</b> ${day.attendance}</p>
 
-<p><b>📊 Goal Progress:</b> ${day.goalProgress}%</p>
-`;
+        <p><b>Research:</b> ${day.research} Minutes</p>
+
+        <p><b>Today's Win:</b> ${day.win}</p>
+
+        <p><b>🎯 Goal:</b> ${day.goal || "-"}</p>
+
+        <p><b>📊 Goal Progress:</b> ${day.goalProgress || 0}%</p>
+        `;
+
+    });
+
+}
+
+document.getElementById("history").innerHTML = output;
+
+// Achievements
+
+let badges = "";
+
+if(history.length >= 1){
+    badges += "🥉 First Save<br>";
+}
+
+if(research >= 100){
+    badges += "📚 100 Research Minutes<br>";
+}
+
+if(streak >= 7){
+    badges += "🔥 7 Day Streak<br>";
+}
+
+document.getElementById("badges").innerHTML = badges;
+  </script>
+
+</body>
+
+</html>
