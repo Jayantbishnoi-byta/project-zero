@@ -24,7 +24,13 @@
 <p id="progressText">0%</p>
 
 <hr>
+<h2>📅 Monthly Analytics</h2>
 
+<p>📆 Month: <span id="currentMonth">-</span></p>
+
+<p>📊 Attendance Rate: <span id="attendanceRate">0%</span></p>
+
+<hr>
 <h2>Founder Summary</h2>
 
 <p>🔥 Current Streak: <span id="streakCount">0</span> Days</p>
@@ -89,7 +95,18 @@ let percent = total > 0 ? Math.round((present / total) * 100) : 0;
 
 document.getElementById("progressBar").value = percent;
 document.getElementById("progressText").innerHTML = percent + "%";
+// Monthly Analytics
 
+let today = new Date();
+
+let monthName = today.toLocaleString("en-US", {
+    month: "long",
+    year: "numeric"
+});
+
+document.getElementById("currentMonth").innerHTML = monthName;
+
+document.getElementById("attendanceRate").innerHTML = percent + "%";
 // Current Streak
 
 let streak = 0;
