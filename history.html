@@ -58,7 +58,28 @@
 <h2>📈 Research Progress</h2>
 
 <progress id="researchBar" value="0" max="500" style="width:100%;height:25px;"></progress>
+<hr>
 
+<h2>📊 Founder Stats</h2>
+
+<div class="statsBox">
+
+<div class="statCard">
+<h3>🔥 Streak</h3>
+<p id="cardStreak">0 Days</p>
+</div>
+
+<div class="statCard">
+<h3>📚 Research</h3>
+<p id="cardResearch">0 Min</p>
+</div>
+
+<div class="statCard">
+<h3>✅ Attendance</h3>
+<p id="cardAttendance">0%</p>
+</div>
+
+    </div>
 <p id="researchProgressText">0 / 500 Minutes</p>
 
 <hr>
@@ -256,7 +277,14 @@ if (research >= 1000) {
     level = "🟡 Legend";
 }
 
-document.getElementById("founderLevel").innerHTML = level;    
+document.getElementById("founderLevel").innerHTML = level; 
+// Founder Stats Cards
+
+document.getElementById("cardStreak").innerHTML = streak + " Days";
+
+document.getElementById("cardResearch").innerHTML = research + " Min";
+
+document.getElementById("cardAttendance").innerHTML = percent + "%";    
   </script>
 
 </body>
