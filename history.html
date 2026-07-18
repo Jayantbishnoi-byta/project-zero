@@ -58,7 +58,11 @@
 <div id="badges"></div>
 
 <hr>
+<h2>📅 Attendance Calendar</h2>
 
+<div id="calendar" class="card"></div>
+
+<hr>
 <h1>📜 Project Zero History</h1>
 
 <div id="history"></div>
@@ -177,7 +181,27 @@ if(history.length === 0){
 }
 
 document.getElementById("history").innerHTML = output;
+// Attendance Calendar
 
+let calendarOutput = "";
+
+if (history.length === 0) {
+
+    calendarOutput = "<p>No Records Yet</p>";
+
+} else {
+
+    [...history].reverse().forEach(day => {
+
+        calendarOutput += `
+        <p>📅 ${day.date} - ${day.attendance}</p>
+        `;
+
+    });
+
+}
+
+document.getElementById("calendar").innerHTML = calendarOutput;
 // Achievements
 
 let badges = "";
