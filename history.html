@@ -61,7 +61,19 @@
 <hr>
 
 <h2>📊 Founder Stats</h2>
+<hr>
 
+<h2>🎯 Goal Analytics</h2>
+
+<p>
+✅ Goals Completed:
+<span id="goalCompleted">0</span>
+</p>
+
+<p>
+📈 Average Goal Progress:
+<span id="goalAverage">0%</span>
+</p>
 <div class="statsBox">
 
 <div class="statCard">
@@ -284,7 +296,31 @@ document.getElementById("cardStreak").innerHTML = streak + " Days";
 
 document.getElementById("cardResearch").innerHTML = research + " Min";
 
-document.getElementById("cardAttendance").innerHTML = percent + "%";    
+document.getElementById("cardAttendance").innerHTML = percent + "%"; 
+// Goal Analytics
+
+let completedGoals = 0;
+let totalGoalProgress = 0;
+
+history.forEach(day => {
+
+    let progress = Number(day.goalProgress || 0);
+
+    totalGoalProgress += progress;
+
+    if(progress >= 100){
+        completedGoals++;
+    }
+
+});
+
+let averageGoal = history.length > 0
+? Math.round(totalGoalProgress / history.length)
+: 0;
+
+document.getElementById("goalCompleted").innerHTML = completedGoals;
+
+document.getElementById("goalAverage").innerHTML = averageGoal + "%";    
   </script>
 
 </body>
