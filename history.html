@@ -119,7 +119,8 @@ let percent = total > 0 ? Math.round((present / total) * 100) : 0;
 document.getElementById("progressBar").value = percent;
 document.getElementById("progressText").innerHTML = percent + "%";
 // Monthly Analytics
-
+document.getElementById("presentBar").value = percent;
+document.getElementById("absentBar").value = 100 - percent;
 let today = new Date();
 
 let monthName = today.toLocaleString("en-US", {
