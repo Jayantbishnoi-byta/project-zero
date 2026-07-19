@@ -8,6 +8,7 @@ const data = {
 
     goal: document.getElementById("goal").value,
     goalProgress: document.getElementById("goalProgress").value
+note: document.getElementById("note").value,    
 };
 
 let history = JSON.parse(localStorage.getItem("projectZeroHistory")) || [];
