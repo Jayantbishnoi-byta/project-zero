@@ -32,7 +32,8 @@
 
 <hr>
 <h2>Founder Summary</h2>
-
+<p>🏆 Longest Streak:
+<span id="longestStreak">0</span> Days</p>
 <p>🔥 Current Streak: <span id="streakCount">0</span> Days</p>
 
 <p>✅ Total Present: <span id="presentCount">0</span></p>
@@ -201,7 +202,30 @@ for(let i = history.length - 1; i >= 0; i--){
 }
 
 document.getElementById("streakCount").innerHTML = streak;
+// Longest Streak
 
+let longestStreak = 0;
+let current = 0;
+
+history.forEach(day => {
+
+    if(day.attendance.includes("Present")){
+
+        current++;
+
+        if(current > longestStreak){
+            longestStreak = current;
+        }
+
+    }else{
+
+        current = 0;
+
+    }
+
+});
+
+document.getElementById("longestStreak").innerHTML = longestStreak;
 // History
 
 let output = "";
